@@ -1,12 +1,13 @@
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import InfoCard from '../components/InfoCard';
 import { format } from 'date-fns';
+import Map from '../components/Map';
 
 const Search = ({ searchResults }) => {
     const router = useRouter();
-    console.log(router.query);
+
     const { location, startDate, endDate, guestNumber } = router.query;
     const formatedStartDate = format(new Date(startDate), 'dd MMMM yy');
     const formatedEndDate = format(new Date(endDate), 'dd MMMM yy');
@@ -15,7 +16,7 @@ const Search = ({ searchResults }) => {
     return (
         <div className='flex h-screen flex-col justify-between'>
             <Header placeholder={`${location} | ${range} | ${guestNumber} guest`} />
-            <main className='flex-grow'>
+            <main className='flex flex-grow mx-auto'>
                 <section className='pt-14 px-6 md:px-10'>
                     <p className='text-xs'>
                         300+ Stays - {range} - for {guestNumber} guests
@@ -33,6 +34,9 @@ const Search = ({ searchResults }) => {
                             <InfoCard key={index} data={item} />
                         ))}
                     </div>
+                </section>
+                <section className='hidden xl:inline-flex min-w-[600px]'>
+                    <Map searchResults={searchResults} />
                 </section>
             </main>
             <Footer />
