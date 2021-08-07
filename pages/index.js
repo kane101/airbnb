@@ -13,9 +13,9 @@ export default function Home({ exploreData, cardsData }) {
                 <title>Kanes Airbnb</title>
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <div className='flex flex-col justify-between'>
+            <div className='flex h-screen flex-col justify-between'>
                 <Header />
-                <main>
+                <main className='flex-grow'>
                     <Banner />
                     <div className='max-w-7xl mx-auto px-8 sm:px-16'>
                         <Explore exploreData={exploreData} />
